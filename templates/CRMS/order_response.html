@@ -1,0 +1,23 @@
+{% extends 'CRMS/base.html' %}
+{% block heading_para %}
+    <p class="lead text-muted">Here are your order details.</p>
+{% endblock %}
+
+{% block body_block %}
+        <div class="alert alert-info alert-dismissible fade show">
+            <strong>Info!</strong> An email is sent to you, with the status of your order.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    <p class="text-start">
+        <b>List of courses in your order: </b>
+        {% if courses %}
+            <ul class="text-start" style="list-style-type: none;">
+                {% for course in courses %}
+                    <li> {{ course.title }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no courses for this topic!</strong>
+        {% endif %}
+    </p>
+{% endblock %}

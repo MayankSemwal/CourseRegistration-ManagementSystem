@@ -1,0 +1,58 @@
+{% extends 'CRMS/base.html' %}
+{#{% block myhdg %} Hello {{ request.session.username }} {% endblock %}#}
+{% block heading_para %}
+    <p class="lead text-muted">The following are your account details available with us.</p>
+{% endblock %}
+{% block body_block %}
+        {% if message %}
+
+            {{ message }}
+        {% else %}
+
+
+    <div class="row">
+  <div class="col-sm-6">
+    <div class="card m-5" style="height: 400px">
+      <div class="card-body">
+        <img src="{{profile_image.url}}" class="card-img-top img-thumbnail rounded" alt="..." style="height:200px;max-width:80%;">
+        <h5 class="card-title mt-3">Full Name: {{firstname }} {{lastname }}</h5>
+        <p class="card-text">{% if address %}Address: {{ address }} , {{ province }}{% endif %}        </p>
+        <p class="card-text">{% if email %}Email: {{ email }}{% endif %}        </p>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card m-5" style="height: 400px">
+      <div class="card-body">
+        <h5 class="card-title">List of Enrolled Courses</h5>
+        <p class="card-text">
+                        {% if courses %}
+                <ul class="text-start" style="list-style-type: none;">
+                    {% for course in courses %}
+                        <li> {{ course.title }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong>There are no courses!</strong>
+            {% endif %}
+        </p>
+      <h5 class="card-title">Interested Topics</h5>
+        <p class="card-text">
+            {% if topics %}
+                <ul class="text-start" style="list-style-type: none;">
+                    {% for topic in topics %}
+                        <li> {{ topic.name }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong>There are no topics for this student!</strong>
+            {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+    {% endif %}
+{% endblock %}
+

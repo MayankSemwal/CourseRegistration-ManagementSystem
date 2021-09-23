@@ -1,0 +1,12 @@
+{% extends 'CRMS/base.html' %}
+{% block heading_para %}
+    <p class="lead text-muted">Select the course you want to enroll in and place your order.</p>
+{% endblock %}
+
+{% block body_block %}
+    <form action="{% url 'CRMS:place_order' %}" method="post" class="text-start">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="submit1" value="Place order" />
+    </form>
+{% endblock %}
