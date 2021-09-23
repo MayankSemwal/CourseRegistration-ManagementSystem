@@ -1,2 +1,2 @@
 # Course-Registration-Management-System
-Django with Python
+E-Learning WebApp using Django with Python 3.7
