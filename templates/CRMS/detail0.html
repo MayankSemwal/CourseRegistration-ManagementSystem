@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href=@'https://fonts.googleapis.com/css?family=Eczar' rel='stylesheet'>
+    <link href=@'https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <title>Detail Page</title>
+</head>
+<body>
+{% if topic %}
+     <h2>{{ topic.name.upper }} </h2>
+     <p>
+         <b>Length: </b> {{ topic.length }}
+     </p>
+    <p>
+        <b>Courses: </b>
+         {% if courses %}
+             <ul>
+                {% for course in courses %}
+                    <li> {{ course.title }}</li>
+                {% endfor %}
+             </ul>
+         {% else %}
+            <strong>There are no courses for this topic!</strong>
+         {% endif %}
+    </p>
+{% endif %}
+
+<p>
+    <a href="{% url 'CRMS:index' %}">Main page </a>
+</p>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{#project:4#}
+{% extends 'CRMS/base.html' %}
+{% block heading_para %}
+    <p class="lead text-muted">Please fill the form to register new user:</p>
+{% endblock %}
+{% block body_block %}
+    <div class="card" style="max-width: 100%;">
+    <div class="card-body">
+    <form action="{% url 'CRMS:register' %}" method="post" class="text-start">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="submit1" value="Register User" />
+    </form>
+    </div>
+    </div>
+{% endblock %}

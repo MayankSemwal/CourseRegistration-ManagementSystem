@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Place Order</title>
+</head>
+<body>
+    <p>"You can place an order here."</p>
+    <table>
+        <tr>
+            <th>Course Name</th>
+            <th>Course Price</th>
+        </tr>
+        {% for course in courseList %}
+        <tr>
+            <td>{{ course.name }}</td>
+            <td>{{ course.price }}</td>
+        </tr>
+          {% endfor %}
+    </table>
+    <br>
+    <p><b>Please fill out the below course details:</b></p>
+    <form method="post"> {% csrf_token %}
+        {% for fields in form %}
+    <table>
+        <tr>
+            <td><b>{{ fields.label }}</b></td>
+            <td></td>
+            <td>{{ fields }}</td>
+        </tr>
+    </table>
+        {% endfor %}
+    <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
