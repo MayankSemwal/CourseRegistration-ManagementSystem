@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>E-Learning WebApp - {% block title %}Welcome!{% endblock %}</title>
+    <!-- Bootstrap CSS only -->
+    <link href= "{% static 'CRMS/bootstrap.min.css' %}" rel="stylesheet"/>
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src= "{% static 'CRMS/bootstrap.bundle.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'CRMS/style.css' %}"/>
+
+    <style>
+     body > div > div > form > ul {
+        list-style-type: none;
+     }
+    </style>
+
+</head>
+<body>
+
+<header class="p-3 bg-dark ">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{% url 'CRMS:index' %}" class="nav-link px-2 nav-item text-white ">Home</a></li>
+                <li><a href="{% url 'CRMS:place_order' %}" class="nav-link px-2 nav-item text-white">Order</a></li>
+                <li><a href="{% url 'CRMS:review' %}" class="nav-link px-2 nav-item text-white">Review</a></li>
+                <li><a href="{% url 'CRMS:findcourses' %}" class="nav-link px-2 nav-item text-white">Find</a></li>
+                <li><a href="/CRMS/about" class="nav-link px-2 nav-item text-white">About</a></li>
+            </ul>
+            <div class="text-end">
+                {% if request.session.username %}
+                    <a class="btn btn-outline-light me-2" role="button" href="{% url 'CRMS:myaccount' %}">My
+                        account</a>
+                    <a class="btn btn-warning" role="button" href="{% url 'CRMS:user_logout' %}">Logout</a>
+                {% else %}
+                    <a class="btn btn-outline-light me-2" role="button" href="{% url 'CRMS:user_login' %}"> Login </a>
+                    <a class="btn btn-warning" role="button" href="{% url 'CRMS:register' %}"> Register </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div class="container">
+    <section class=" mt-2 text-center container">
+        <div class="row py-lg-2">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">{% block myhdg %}Hello {% if request.session.username %}{{ request.session.fullname }} {% else %}User
+        {% endif %} {% endblock %}</h1>
+            {% block heading_para %}*** {% endblock %}
+          </div>
+        </div>
+      </section>
+
+    <div class="container text-center">
+         {% block body_block %}*** {% endblock %}
+    </div>
+
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+      <div class="col-6 col-md">
+        <h5>Site Map</h5>
+        <ul class="list-unstyled text-small">
+            <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'CRMS:findcourses' %}"> Search Courses </a></li>
+            <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'CRMS:place_order' %}"> Place Order </a></li>
+            <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'CRMS:review' %}"> Submit A Review </a></li>
+            <li class="mb-1"><a class="link-secondary text-decoration-none" href="/CRMS/about">Find out about this site</a></li>
+            <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'CRMS:index' %}">Click here to return to main page</a></li>
+        </ul>
+      </div>
+    </div>
+</footer>
+</div>
+
+</body>
+</html>
